@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino</title>
+</head>
+<style>
+    body {
+        background-color: rgb(253, 242, 228);
+
+    }
+
+    .box-principal {
+        border: 1px solid black;
+        width: 600px;
+        height: 500px;
+        text-align: center;
+        background-color: #fdf1db;
+        justify-content: center;
+        align-items: center;
+
+
+    }
+
+    #valor1 {
+        margin-top: 10px;
+        text-align: center;
+        padding: 10px;
+        font: 15px arial;
+        border-radius: 9px;
+    }
+
+    #valor2,
+    #idade1 {
+        margin-top: 10px;
+        margin-right: 9px;
+        text-align: center;
+        padding: 10px;
+        font: 15px arial;
+        border-radius: 9px;
+        
+    }
+
+    #botao {
+        margin-top: 10px;
+        padding: 8px;
+    }
+
+    #mostrar {
+        margin-top: 60px;
+        font: 20px normal arial;
+        text-align: center;
+
+    }
+
+    .label-calculo {
+        color: #000000;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        display: block;
+        margin-bottom: 4px;
+        font: 20px arial;
+        margin-top: 10px;
+
+    }
+
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+
+    }
+</style>
+
+<body>
+    <div class="box-principal">
+        <h1>Cálculo do IMC</h1>
+        <p>Cálculo para IMC de adultos e idosos, não indicamos esses resultados para criança ou adolescente.
+            Este cálculo é um valor aproximado, procure um médico da area para <br> resultados mais conclusivos e um
+            melhor acompanhamento.<br><br>
+            <strong>cuide da sua saúde.</strong>
+        </p>
+
+        <label for="valor1" class="label-calculo">peso</label>
+        <input type="number" id="valor1" placeholder="Ex: 30"><br>
+
+        <label for="valor2" class="label-calculo">altura</label>
+        <input type="number" id="valor2" placeholder="Ex: 1.98"><br>
+
+        <label for="idade1" class="label-calculo">idade</label>
+        <input type="number" id="idade1" placeholder="Ex: 34"><br>
+
+        <input type="button" value="Calcular" id="botao">
+        <div id="mostrar">
+
+        </div>
+    </div>
+    <script>
+        var valor1 = document.getElementById("valor1")
+        var valor2 = document.getElementById("valor2")
+        var idade1 = document.getElementById("idade1")
+        var botao = document.getElementById("botao")
+        var mostrar = document.getElementById("mostrar")
+        botao.addEventListener('click', imc)
+
+        function imc() {
+            var peso = Number(valor1.value);
+            var altura = Number(valor2.value);
+            var idade = Number(idade1.value);
+            var adulto = 20
+            var result = (peso / (altura * altura)).toFixed(1);
+            if (idade >= adulto && result <= 18.5) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está abaixo do peso<br> procure um médico.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade >= adulto && result <= 24.9) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está com o peso normal <br> Nunca deixe de visitar um médico.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade >= adulto && result <= 29.9) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está com pré-obesidade <br> Nunca deixe de visitar um médico.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade >= adulto && result <= 34.9) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está com obesidade grau I <br> Procure um médico o quanto antes.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade >= adulto && result <= 39.9) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está com obesidade grau II <br> Procure um médico imediatamente.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade >= adulto && result > 40) {
+                mostrar.innerHTML = `Seu IMC é: <strong>${result}</strong><br>Você está com obesidade grau III <br> Procure um médico <strong>URGENTEMENTE</strong>.`
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+            else if (idade <= 19) {
+                mostrar.innerHTML = "Não calculamos IMC infantil e Juvenil"
+                mostrar.style.border = "1px solid black"
+                mostrar.style.borderRadius = "10px"
+                mostrar.style.backgroundColor = "#fdf1db"
+            }
+
+
+        }
+    </script>
+
+</body>
+
+</html>
